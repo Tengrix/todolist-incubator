@@ -3,6 +3,7 @@ import './App.css';
 import {AppTaskType, filterType} from "./App";
 import NewTitle from './NewTitle';
 import Task from './Task';
+import NewTitleForTodoList from "./NewTitleForTodoList";
 
 type TasksType = {
     id: string;
@@ -14,6 +15,9 @@ type TasksType = {
     filter: filterType;
     changeTaskStatus: (id: string, todoListId: string, isDone: boolean) => void;
     removeTodoLists:(todoListId:string) => void;
+    addTodoLists:(title:string) => void;
+    updateTitle:(id:string,newTitle:string, todoListsId:string) => void;
+    updateTodoListTitle:(newTitle:string, todoListId:string) => void;
 }
 
 function Tasks(props: TasksType) {
@@ -21,17 +25,23 @@ function Tasks(props: TasksType) {
     const filterAllBtnHandler = props.filter === 'all' ? 'activeBtn' : ''
     const filterActiveBtnHandler = props.filter === 'active' ? 'activeBtn' : ''
     const filterCompletedBtnHandler = props.filter === 'completed' ? 'activeBtn' : ''
-
+    const addTask = (title:string) => {props.addTask(title, props.id)}
     return (
         <div className="App">
-            {props.title} <button onClick={()=>{props.removeTodoLists(props.id)}}>x</button>
-            <NewTitle addTask={props.addTask} id={props.id}/>
+            <NewTitleForTodoList title={props.title}
+                                 updateTodoListTitle={props.updateTodoListTitle}
+                                 id={props.id}
+            />
+                                 <button onClick={()=>{props.removeTodoLists(props.id)}}>x</button>
+            <NewTitle addTask={addTask} />
             {props.task.map(el => <Task
                 key={el.id}
                 task={el}
                 changeTaskStatus={props.changeTaskStatus}
                 id={props.id}
-                removeTasks={props.removeTasks}/>
+                removeTasks={props.removeTasks}
+                updateTitle={props.updateTitle}
+                />
             )}
             <button className={filterAllBtnHandler} onClick={() => {
                 props.changeFilter('all', props.id)

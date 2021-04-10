@@ -13,7 +13,7 @@ function Tasks(props:NewTitleType) {
             props.addTask(newTitle.trim())
         }
         else{
-            setError('new task required!')
+            setError('new todoList required!')
         }
         setNewTitle('')
     }

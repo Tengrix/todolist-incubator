@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {v1} from 'uuid';
 import Tasks from './Tasks';
+import NewTitle from "./NewTitle";
 
 export type TodoListsType = {
     id: string;
@@ -39,7 +40,7 @@ function App() {
                 {id: v1(), title: 'Html', isDone: true},
                 {id: v1(), title: 'Css', isDone: true},
                 {id: v1(), title: 'JS', isDone: false},
-            ]
+            ],
         }
     )
 
@@ -84,8 +85,30 @@ function App() {
         delete task[todoListId]
     }
 
+    function addTodoList(newTitle:string){
+        let todoListId = v1()
+        const newTodoList : TodoListsType = {
+            id:todoListId,
+            title: newTitle,
+            filter: 'all'
+        }
+        setTodoLists([...todoLists, newTodoList])
+        setTask({...task, [todoListId]:[]})
+    }
+
+    function updateTitle(id:string,newTitle:string,todoListsId:string) {
+        const changedTitle = task[todoListsId].map(el=>el.id===id?{...el,title:newTitle}:el)
+        setTask({...task,[todoListsId]:changedTitle})
+    }
+
+    function updateTodoListTitle(newTitle:string, todoListId:string){
+        const updatedTodoList = todoLists.map(el=> el.id === todoListId? {...el, title:newTitle}:el)
+        setTodoLists(updatedTodoList)
+    }
+
     return (
         <div className="App">
+            <NewTitle addTask={addTodoList}/>
             {todoLists.map(el => {
                 return <Tasks key={el.id}
                               id={el.id}
@@ -97,6 +120,9 @@ function App() {
                               title={el.title}
                               changeTaskStatus={changeTaskStatus}
                               removeTodoLists={removeTodoLists}
+                              addTodoLists={addTodoList}
+                              updateTitle={updateTitle}
+                              updateTodoListTitle={updateTodoListTitle}
                 />
             })}
         </div>
