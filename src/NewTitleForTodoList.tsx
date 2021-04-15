@@ -1,10 +1,13 @@
 import React, {ChangeEvent, useState} from 'react';
 import './App.css';
+import {Button, IconButton} from "@material-ui/core";
+import {Delete} from "@material-ui/icons";
 
 type NewTitleType = {
     id: string
     title: string;
     updateTodoListTitle: (newTitle: string, todoListId: string) => void;
+    removeTodoLists: (todoListId: string) => void;
 }
 
 function Tasks(props: NewTitleType) {
@@ -23,8 +26,12 @@ function Tasks(props: NewTitleType) {
             <span>{props.title}</span>
             {edit &&
             <input type="text" value={newTitle} onChange={changeTitle}/>}
-            <button onClick={() => setEdit(!edit)}>edit</button>
-            <button onClick={updateTodoListTitle}>save</button>
+            <Button size={'small'} onClick={() => setEdit(!edit)}>edit</Button>
+            <Button size={'small'} onClick={updateTodoListTitle}>save</Button>
+            <IconButton onClick={() => {
+                props.removeTodoLists(props.id)
+            }}> <Delete/>
+            </IconButton>
         </div>
     );
 }

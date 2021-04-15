@@ -1,5 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import './App.css';
+import {IconButton, TextField} from "@material-ui/core";
+import { AddBox } from '@material-ui/icons';
 
 type NewTitleType = {
     addTask:(newTitle:string) => void;
@@ -7,7 +9,7 @@ type NewTitleType = {
 
 function Tasks(props:NewTitleType) {
     const [newTitle, setNewTitle] = useState<string>('')
-    const [error, setError] = useState<string>('')
+    const [error, setError] = useState<string|null>('')
     const changeTitle = () => {
         if(newTitle.trim()){
             props.addTask(newTitle.trim())
@@ -23,9 +25,17 @@ function Tasks(props:NewTitleType) {
     }
     return (
         <div className="App">
-            <input className={error?'inputError':''} type="text" value={newTitle}  onChange={inputChange}/>
-            <button onClick={changeTitle}>+</button>
-            {error? <div className={'error'}>{error}</div>:''}
+            <TextField
+                variant={'outlined'}
+                className={error?'inputError':''}
+                type="text" value={newTitle}
+                onChange={inputChange}
+                label={'Title'}
+                error={!!error}
+                helperText={error}
+            />
+            <IconButton color={'primary'} onClick={changeTitle}><AddBox/></IconButton>
+
         </div>
     );
 }

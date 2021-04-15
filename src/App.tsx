@@ -3,6 +3,9 @@ import './App.css';
 import {v1} from 'uuid';
 import Tasks from './Tasks';
 import NewTitle from "./NewTitle";
+import {AppBar, Button, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
+import {Menu} from '@material-ui/icons'
+import Container from '@material-ui/core/Container'
 
 export type TodoListsType = {
     id: string;
@@ -85,46 +88,69 @@ function App() {
         delete task[todoListId]
     }
 
-    function addTodoList(newTitle:string){
+    function addTodoList(newTitle: string) {
         let todoListId = v1()
-        const newTodoList : TodoListsType = {
-            id:todoListId,
+        const newTodoList: TodoListsType = {
+            id: todoListId,
             title: newTitle,
             filter: 'all'
         }
         setTodoLists([...todoLists, newTodoList])
-        setTask({...task, [todoListId]:[]})
+        setTask({...task, [todoListId]: []})
     }
 
-    function updateTitle(id:string,newTitle:string,todoListsId:string) {
-        const changedTitle = task[todoListsId].map(el=>el.id===id?{...el,title:newTitle}:el)
-        setTask({...task,[todoListsId]:changedTitle})
+    function updateTitle(id: string, newTitle: string, todoListsId: string) {
+        const changedTitle = task[todoListsId].map(el => el.id === id ? {...el, title: newTitle} : el)
+        setTask({...task, [todoListsId]: changedTitle})
     }
 
-    function updateTodoListTitle(newTitle:string, todoListId:string){
-        const updatedTodoList = todoLists.map(el=> el.id === todoListId? {...el, title:newTitle}:el)
+    function updateTodoListTitle(newTitle: string, todoListId: string) {
+        const updatedTodoList = todoLists.map(el => el.id === todoListId ? {...el, title: newTitle} : el)
         setTodoLists(updatedTodoList)
     }
 
+    const todoListComponents = todoLists.map(el => {
+        return <Grid item={true}>
+            <Paper elevation={6} style={{padding: '10px'}}>
+                <Tasks key={el.id}
+                       id={el.id}
+                       task={changeFilterTasks(el)}
+                       changeFilter={changeFilter}
+                       removeTasks={removeTasks}
+                       addTask={addTask}
+                       filter={el.filter}
+                       title={el.title}
+                       changeTaskStatus={changeTaskStatus}
+                       removeTodoLists={removeTodoLists}
+                       addTodoLists={addTodoList}
+                       updateTitle={updateTitle}
+                       updateTodoListTitle={updateTodoListTitle}
+                />
+            </Paper>
+        </Grid>
+    })
+
     return (
         <div className="App">
-            <NewTitle addTask={addTodoList}/>
-            {todoLists.map(el => {
-                return <Tasks key={el.id}
-                              id={el.id}
-                              task={changeFilterTasks(el)}
-                              changeFilter={changeFilter}
-                              removeTasks={removeTasks}
-                              addTask={addTask}
-                              filter={el.filter}
-                              title={el.title}
-                              changeTaskStatus={changeTaskStatus}
-                              removeTodoLists={removeTodoLists}
-                              addTodoLists={addTodoList}
-                              updateTitle={updateTitle}
-                              updateTodoListTitle={updateTodoListTitle}
-                />
-            })}
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton edge="start" color="inherit" aria-label="menu">
+                        <Menu/>
+                    </IconButton>
+                    <Typography variant="h6">
+                        TodoLists
+                    </Typography>
+                    <Button color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
+            <Container>
+                <Grid container={true} style={{padding: '20px 0px '}}>
+                    <NewTitle addTask={addTodoList}/>
+                </Grid>
+                <Grid spacing={3} container={true}>
+                    {todoListComponents}
+                </Grid>
+            </Container>
         </div>
     )
 }

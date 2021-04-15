@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import {AppTaskType} from "./App";
 import EditableSpan from "./EditableSpan";
+import {Checkbox, IconButton} from "@material-ui/core";
+import {Delete} from "@material-ui/icons";
 
 type TaskType = {
     id:string
@@ -15,13 +17,16 @@ function Tasks(props:TaskType) {
 
     return (
         <div className="App">
-            <input type="checkbox" checked={props.task.isDone}
-                   onChange={(e)=>{props.changeTaskStatus(props.task.id,props.id,e.currentTarget.checked)}}/>
+            <Checkbox
+                checked={props.task.isDone}
+                color={'primary'}
+                onChange={(e)=>{props.changeTaskStatus(props.task.id,props.id,e.currentTarget.checked)}}
+            />
             <EditableSpan task={props.task}
                           updateTitle={props.updateTitle}
                           id={props.id}
             />
-            <button onClick={()=>{props.removeTasks(props.task.id,props.id)}}>x</button>
+            <IconButton onClick={()=>{props.removeTasks(props.task.id,props.id)}}><Delete/></IconButton>
         </div>
     );
 }

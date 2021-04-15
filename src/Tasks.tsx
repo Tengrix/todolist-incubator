@@ -4,6 +4,7 @@ import {AppTaskType, filterType} from "./App";
 import NewTitle from './NewTitle';
 import Task from './Task';
 import NewTitleForTodoList from "./NewTitleForTodoList";
+import {Button} from "@material-ui/core";
 
 type TasksType = {
     id: string;
@@ -14,10 +15,10 @@ type TasksType = {
     addTask: (newTitle: string, todoListId: string) => void;
     filter: filterType;
     changeTaskStatus: (id: string, todoListId: string, isDone: boolean) => void;
-    removeTodoLists:(todoListId:string) => void;
-    addTodoLists:(title:string) => void;
-    updateTitle:(id:string,newTitle:string, todoListsId:string) => void;
-    updateTodoListTitle:(newTitle:string, todoListId:string) => void;
+    removeTodoLists: (todoListId: string) => void;
+    addTodoLists: (title: string) => void;
+    updateTitle: (id: string, newTitle: string, todoListsId: string) => void;
+    updateTodoListTitle: (newTitle: string, todoListId: string) => void;
 }
 
 function Tasks(props: TasksType) {
@@ -25,36 +26,47 @@ function Tasks(props: TasksType) {
     const filterAllBtnHandler = props.filter === 'all' ? 'activeBtn' : ''
     const filterActiveBtnHandler = props.filter === 'active' ? 'activeBtn' : ''
     const filterCompletedBtnHandler = props.filter === 'completed' ? 'activeBtn' : ''
-    const addTask = (title:string) => {props.addTask(title, props.id)}
+    const addTask = (title: string) => {
+        props.addTask(title, props.id)
+    }
     return (
         <div className="App">
             <NewTitleForTodoList title={props.title}
                                  updateTodoListTitle={props.updateTodoListTitle}
                                  id={props.id}
-            />
-                                 <button onClick={()=>{props.removeTodoLists(props.id)}}>x</button>
-            <NewTitle addTask={addTask} />
+             removeTodoLists={props.removeTodoLists}/>
+            <NewTitle addTask={addTask}/>
             {props.task.map(el => <Task
-                key={el.id}
-                task={el}
-                changeTaskStatus={props.changeTaskStatus}
-                id={props.id}
-                removeTasks={props.removeTasks}
-                updateTitle={props.updateTitle}
+                    key={el.id}
+                    task={el}
+                    changeTaskStatus={props.changeTaskStatus}
+                    id={props.id}
+                    removeTasks={props.removeTasks}
+                    updateTitle={props.updateTitle}
                 />
             )}
-            <button className={filterAllBtnHandler} onClick={() => {
-                props.changeFilter('all', props.id)
-            }}>all
-            </button>
-            <button className={filterActiveBtnHandler} onClick={() => {
+            <Button color={'primary'}
+                    size={'small'}
+                    variant={props.filter === 'all' ? 'outlined' : 'contained'}
+                    className={filterAllBtnHandler}
+                    onClick={() => {
+                        props.changeFilter('all', props.id)
+                    }}>all
+            </Button>
+            <Button color={'primary'}
+                    size={'small'}
+                    variant={props.filter === 'active' ? 'outlined' : 'contained'}
+                    className={filterActiveBtnHandler} onClick={() => {
                 props.changeFilter('active', props.id)
             }}>active
-            </button>
-            <button className={filterCompletedBtnHandler} onClick={() => {
+            </Button>
+            <Button color={'primary'}
+                    size={'small'}
+                    variant={props.filter === 'completed' ? 'outlined' : 'contained'}
+                    className={filterCompletedBtnHandler} onClick={() => {
                 props.changeFilter('completed', props.id)
             }}>completed
-            </button>
+            </Button>
         </div>
     );
 }
