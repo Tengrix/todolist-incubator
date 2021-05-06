@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {AppTaskType} from "./App";
+import {AppTaskType} from "./AppWithRedux";
 import EditableSpan from "./EditableSpan";
 import {Checkbox, IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";

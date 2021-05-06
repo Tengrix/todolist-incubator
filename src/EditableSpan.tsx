@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import './App.css';
-import {AppTaskType} from "./App";
+import {AppTaskType} from "./AppWithRedux";
 import {TextField} from "@material-ui/core";
 
 type EditableSpanPropsType = {

@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
-import {AppTaskType, filterType} from "./App";
+import {AppTaskType, filterType, TodoListsType} from "./AppWithRedux";
 import NewTitle from './NewTitle';
 import Task from './Task';
 import NewTitleForTodoList from "./NewTitleForTodoList";
 import {Button} from "@material-ui/core";
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "./state/store";
 
 type TasksType = {
     id: string;
@@ -22,6 +24,10 @@ type TasksType = {
 }
 
 function Tasks(props: TasksType) {
+    let todolist = useSelector<AppRootStateType, TodoListsType>(state => state.todolists.filter
+    (el => el.id === props.id)[0])
+    let task = useSelector<AppRootStateType, AppTaskType[]>(state => state.tasks[props.id])
+
 
     const filterAllBtnHandler = props.filter === 'all' ? 'activeBtn' : ''
     const filterActiveBtnHandler = props.filter === 'active' ? 'activeBtn' : ''
