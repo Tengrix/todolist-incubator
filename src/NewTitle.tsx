@@ -3,11 +3,11 @@ import './App.css';
 import {IconButton, TextField} from "@material-ui/core";
 import { AddBox } from '@material-ui/icons';
 
-type NewTitleType = {
+export type NewTitleType = {
     addTask:(newTitle:string) => void;
 }
 
-function Tasks(props:NewTitleType) {
+export const  NewTitle = React.memo(function (props:NewTitleType){
     const [newTitle, setNewTitle] = useState<string>('')
     const [error, setError] = useState<string|null>('')
     const changeTitle = () => {
@@ -38,6 +38,5 @@ function Tasks(props:NewTitleType) {
 
         </div>
     );
-}
+})
 
-export default Tasks;

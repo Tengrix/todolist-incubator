@@ -3,13 +3,13 @@ import './App.css';
 import {AppTaskType} from "./AppWithRedux";
 import {TextField} from "@material-ui/core";
 
-type EditableSpanPropsType = {
+export type EditableSpanPropsType = {
     task: AppTaskType;
     updateTitle:(id:string,newTitle:string, todoListsId:string) => void;
     id: string;
 }
 
-function EditableSpan(props:EditableSpanPropsType) {
+const EditableSpan = React.memo(function (props:EditableSpanPropsType) {
     const [editMode, setEditMode] = useState<boolean>(false)
     const [newTitle, setNewTitle] = useState<string>(props.task.title)
     const onEditMode = () => setEditMode(true)
@@ -26,6 +26,6 @@ function EditableSpan(props:EditableSpanPropsType) {
 
         </span>
     );
-}
+})
 
 export default EditableSpan;

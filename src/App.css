@@ -1,12 +1,9 @@
-/*.App {*/
-/*  text-align: center;*/
-/*}*/
-/*.activeBtn {*/
-/* background: greenyellow;*/
-/*}*/
-/*.error {*/
-/*    color: red;*/
-/*}*/
-/*.inputError {*/
-/*    border: 1px solid red;*/
-/*}*/
+.activeBtn {
+ background: greenyellow;
+}
+.error {
+    color: red;
+}
+.inputError {
+    border: 1px solid red;
+}

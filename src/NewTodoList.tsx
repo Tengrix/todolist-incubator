@@ -4,7 +4,6 @@ import './App.css';
 type NewTitleType = {
     addTask:(newTitle:string) => void;
 }
-
 function Tasks(props:NewTitleType) {
     const [newTitle, setNewTitle] = useState<string>('')
     const [error, setError] = useState<string>('')

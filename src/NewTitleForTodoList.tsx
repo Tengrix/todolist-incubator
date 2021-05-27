@@ -10,7 +10,7 @@ type NewTitleType = {
     removeTodoLists: (todoListId: string) => void;
 }
 
-function Tasks(props: NewTitleType) {
+function NewTitleForTodoList(props: NewTitleType) {
     const [newTitle, setNewTitle] = useState<string>('')
     const [edit, setEdit] = useState<boolean>(false)
     const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,4 +36,4 @@ function Tasks(props: NewTitleType) {
     );
 }
 
-export default Tasks;
+export default NewTitleForTodoList;

@@ -1,4 +1,4 @@
-import {KeyTasksType} from "../App";
+import {KeyTasksType} from "../AppWithRedux";
 import {
     addTaskAC,
     changeTaskStatusAC,
