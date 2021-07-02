@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
 import { SetAppErrorActionType, setAppStatusAC, SetAppStatusActionType } from '../../app/app-reducer'
-import {authAPI, LoginParamsType, todolistsAPI} from "../../api/todolists-api";
+import {authAPI, LoginParamsType} from "../../api/todolists-api";
 import {handleServerAppError} from "../../utils/error-utils";
 
 const initialState = {
@@ -41,7 +41,7 @@ export const logOutTC = () => (dispatch: Dispatch) => {
         }else{
             handleServerAppError(res.data, dispatch)
         }
-    }) .catch(()=>{
+    }).catch(()=>{
 
     })
 }

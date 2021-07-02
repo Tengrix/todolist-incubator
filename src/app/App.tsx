@@ -15,7 +15,7 @@ import {TodolistsList} from '../features/TodolistsList/TodolistsList'
 import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar'
 import {useDispatch, useSelector} from 'react-redux'
 import {AppRootStateType} from './store'
-import {initializeAppTC, isInitializedAc, RequestStatusType} from './app-reducer'
+import {initializeAppTC,  RequestStatusType} from './app-reducer'
 import {Login} from "../features/Login/Login";
 import {Redirect, Route, Switch} from 'react-router-dom'
 import {logOutTC} from "../features/Login/auth-reducer";

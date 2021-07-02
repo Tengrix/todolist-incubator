@@ -51,6 +51,7 @@ export const authAPI = {
     logout(){
         return instance.delete<ResponseType>('auth/login')
     }
+
 }
 
 // types

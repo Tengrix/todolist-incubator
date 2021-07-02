@@ -4,7 +4,6 @@ import {useFormik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {loginTC} from "./auth-reducer";
 import {AppRootStateType} from "../../app/store";
-import {LoginParamsType} from "../../api/todolists-api";
 import { Redirect } from 'react-router-dom';
 
 type FormikErrorType = {
