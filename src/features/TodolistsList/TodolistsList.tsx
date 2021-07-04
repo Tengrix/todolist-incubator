@@ -27,7 +27,6 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
     const isAuth = useSelector<AppRootStateType,boolean>((state) => state.auth.isLoggedIn)
 
     const dispatch = useDispatch()
-
     useEffect(() => {
         if (!isAuth) {
             return;
