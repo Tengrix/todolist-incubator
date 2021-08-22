@@ -40,9 +40,7 @@ export const initializeAppTC = () => (dispatch: Dispatch) => {
 
     authAPI.authMe().then((res) => {
         if (res.data.resultCode === 0) {
-            debugger
-            dispatch(setIsLoggedInAC({value:true}))
-        } else {
+            dispatch(setIsLoggedInAC({isLoggedIn:true}))
         }
     })
         .catch(()=>{
@@ -52,6 +50,3 @@ export const initializeAppTC = () => (dispatch: Dispatch) => {
             dispatch(isInitializedAc({isInitialized:true}))
         })
 }
-
-export type setAppStatusACType = ReturnType<typeof setAppStatusAC>
-export type setAppErrorACType = ReturnType<typeof setAppErrorAC>

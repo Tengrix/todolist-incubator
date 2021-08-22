@@ -1,9 +1,9 @@
 import React from 'react'
 import {Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Button, Grid} from '@material-ui/core'
-import {useFormik} from "formik";
-import {useDispatch, useSelector} from "react-redux";
+import {FormikHelpers, useFormik} from "formik";
+import {useSelector} from "react-redux";
 import {loginTC} from "./auth-reducer";
-import {AppRootStateType} from "../../app/store";
+import {AppRootStateType, useAppDispatch} from "../../app/store";
 import { Redirect } from 'react-router-dom';
 
 type FormikErrorType = {
@@ -11,12 +11,16 @@ type FormikErrorType = {
     password?: string
     rememberMe?: boolean
 }
-
+type FormValuesType = {
+    email:string;
+    password:string;
+    rememberMe:boolean;
+}
 
 
 export const Login = () => {
-    const dispatch = useDispatch()
-    const isAuth = useSelector<AppRootStateType,boolean>((state) => state.auth.isLoggedIn)
+    const dispatch = useAppDispatch()
+    const isLoggedIn = useSelector<AppRootStateType,boolean>((state) => state.auth.isLoggedIn)
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -37,12 +41,19 @@ export const Login = () => {
             }
             return errors;
         },
-        onSubmit: values => {
-            dispatch(loginTC(values))
-            formik.resetForm();
+        onSubmit:async (values:FormValuesType,formikHelpers:FormikHelpers<FormValuesType>) => {
+            const action = await dispatch(loginTC(values))
+            if(loginTC.rejected.match(action) ){
+                if(action.payload?.fieldErrors?.length){
+                    const error = action.payload?.fieldErrors[0]
+                    formikHelpers.setFieldError(error.field,error.error)
+                }else{
+
+                }
+            }
         },
     })
-    if(isAuth){
+    if(isLoggedIn){
         return <Redirect to={'/'}/>
     }
     return <Grid container justify="center">

@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-
-
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.1/',
     withCredentials: true,
@@ -13,8 +11,7 @@ const instance = axios.create({
 // api
 export const todolistsAPI = {
     getTodolists() {
-        const promise = instance.get<TodolistType[]>('todo-lists');
-        return promise;
+        return instance.get<TodolistType[]>('todo-lists');
     },
     createTodolist(title: string) {
         const promise = instance.post<ResponseType<{ item: TodolistType }>>('todo-lists', {title: title});
@@ -74,8 +71,10 @@ export type TodolistType = {
     addedDate: string
     order: number
 }
+export type FieldErrorType = {field:string; error:string;}
 export type ResponseType<D = {}> = {
     resultCode: number
+    fieldErrors?:Array<FieldErrorType>
     messages: Array<string>
     data: D
 }
