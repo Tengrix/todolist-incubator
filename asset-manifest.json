@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/todolist/static/css/main.155097fa.chunk.css",
-    "main.js": "/todolist/static/js/main.d2980510.chunk.js",
-    "main.js.map": "/todolist/static/js/main.d2980510.chunk.js.map",
-    "runtime-main.js": "/todolist/static/js/runtime-main.283d8678.js",
-    "runtime-main.js.map": "/todolist/static/js/runtime-main.283d8678.js.map",
-    "static/js/2.317bd65b.chunk.js": "/todolist/static/js/2.317bd65b.chunk.js",
-    "static/js/2.317bd65b.chunk.js.map": "/todolist/static/js/2.317bd65b.chunk.js.map",
-    "index.html": "/todolist/index.html",
-    "precache-manifest.dc1e5e339ca4448fa4256625ef16501c.js": "/todolist/precache-manifest.dc1e5e339ca4448fa4256625ef16501c.js",
-    "service-worker.js": "/todolist/service-worker.js",
-    "static/css/main.155097fa.chunk.css.map": "/todolist/static/css/main.155097fa.chunk.css.map",
-    "static/js/2.317bd65b.chunk.js.LICENSE.txt": "/todolist/static/js/2.317bd65b.chunk.js.LICENSE.txt"
+    "main.css": "/todolist-incubator/static/css/main.155097fa.chunk.css",
+    "main.js": "/todolist-incubator/static/js/main.24ca3623.chunk.js",
+    "main.js.map": "/todolist-incubator/static/js/main.24ca3623.chunk.js.map",
+    "runtime-main.js": "/todolist-incubator/static/js/runtime-main.8b98fea1.js",
+    "runtime-main.js.map": "/todolist-incubator/static/js/runtime-main.8b98fea1.js.map",
+    "static/js/2.317bd65b.chunk.js": "/todolist-incubator/static/js/2.317bd65b.chunk.js",
+    "static/js/2.317bd65b.chunk.js.map": "/todolist-incubator/static/js/2.317bd65b.chunk.js.map",
+    "index.html": "/todolist-incubator/index.html",
+    "precache-manifest.1def4a6398b28bb5c2818ca1344b5dbf.js": "/todolist-incubator/precache-manifest.1def4a6398b28bb5c2818ca1344b5dbf.js",
+    "service-worker.js": "/todolist-incubator/service-worker.js",
+    "static/css/main.155097fa.chunk.css.map": "/todolist-incubator/static/css/main.155097fa.chunk.css.map",
+    "static/js/2.317bd65b.chunk.js.LICENSE.txt": "/todolist-incubator/static/js/2.317bd65b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.283d8678.js",
+    "static/js/runtime-main.8b98fea1.js",
     "static/js/2.317bd65b.chunk.js",
     "static/css/main.155097fa.chunk.css",
-    "static/js/main.d2980510.chunk.js"
+    "static/js/main.24ca3623.chunk.js"
   ]
 }
