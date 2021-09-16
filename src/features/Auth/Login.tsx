@@ -52,7 +52,7 @@ export const Login = () => {
     })
 
     if (isLoggedIn) {
-        return <Redirect to={"/"} />
+        return <Redirect to={"/todolist"} />
     }
 
 
@@ -68,10 +68,10 @@ export const Login = () => {
                         <p>
                             or use common test account credentials:
                         </p>
-                        <p> Email: free@samuraijs.com
+                        <p> Email: damir861@gamil.com
                         </p>
                         <p>
-                            Password: free
+                            Password: Tengrix123
                         </p>
                     </FormLabel>
                     <FormGroup>
